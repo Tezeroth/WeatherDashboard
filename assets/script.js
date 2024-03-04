@@ -45,25 +45,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 const currentDate = new Date();
                 const dateElement = document.createElement('p');
                 dateElement.textContent = currentDate.toDateString();
-                document.querySelector('aside').appendChild(dateElement);
+                document.querySelector('#today').appendChild(dateElement);
 
                 // Display the temperature
                 const temperatureElement = document.createElement('p');
                 temperatureElement.textContent = `Temperature: ${temperature} K`;
-                document.querySelector('aside').appendChild(temperatureElement);
+                document.querySelector('#forecast').appendChild(temperatureElement);
 
                 // Display the wind
                 const windElement = document.createElement('p');
                 windElement.textContent = `Wind: ${wind} m/s`;
-                document.querySelector('aside').appendChild(windElement);
+                document.querySelector('#forecast').appendChild(windElement);
 
                 // Display the humidity
                 const humidityElement = document.createElement('p');
                 humidityElement.textContent = `Humidity: ${humidity}%`;
-                document.querySelector('aside').appendChild(humidityElement);
+                document.querySelector('#forecast').appendChild(humidityElement);
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+
     });
 });
