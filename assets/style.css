@@ -1,0 +1,16 @@
+
+.weather-header {
+    background: linear-gradient(to right, #111df6, #0a0e6e);
+}
+    
+
+
+.weather-search {
+  width: 100%;
+}
+
+.weather-hr {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
