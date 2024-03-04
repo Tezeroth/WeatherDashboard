@@ -1,10 +1,17 @@
 
+.search-button {
+    background-color: rgb(8, 104, 136);
+    color: white;
+    border-radius: 5px;
+    width: 100% !important;
+}
+
+
+
 .weather-header {
     background: linear-gradient(to right, #111df6, #0a0e6e);
 }
     
-
-
 .weather-search {
   width: 100%;
 }
