@@ -11,19 +11,24 @@
     color: white;
 }
 
-
 #search-input {
     width: 100%;
     border-radius: 5px;
-  }
-  
-  .input-group-append {
+}
+
+.input-group-append {
     width: 100%;
-  }
-  
-  #today {
+}
+
+#today {
     border: solid 1px black;
-  }
+    float: right; /* Add this property to move it to the right */
+}
+
+
+
+
+
 #forecast {
     border: solid 1px black;
 }

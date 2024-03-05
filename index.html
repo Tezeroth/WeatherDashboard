@@ -21,45 +21,43 @@
   <!-- max-width for ultra wide resolutions -->
   <div class="container-fluid" style="max-width: 1400px">
     <div class="row">
-     
-      <aside class="col-lg-3 pb-3">
+      <!-- left side section containing the search box and the history -->
+      <aside class="col-lg-3 pb-3 order-lg-1">
         <h2 id="form-heading" class="mt-1 h3 form-label">
           Search for a City:
         </h2>
 
         <form id="search-form" class="form">
           <div class="form-inline form-group" style="display: flex; align-items: center;"></div>
-            <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="London"
-                aria-labelledby="form-heading" aria-controls="today forecast" />
-                
-      
-              <div class="input-group-append">
-                
-                <button type="submit" class="btn search-button" id="search-button" aria-label="submit search" style="width: 100%;">
-                  Search
-                </button>
-      
-              </div>
-        
+          <div class="input-group">
+            <input 
+              class="form-input weather-search" 
+              type="text" 
+              id="search-input" 
+              placeholder="London"
+              aria-labelledby="form-heading" 
+              aria-controls="today forecast" 
+            />
+            <div class="input-group-append mb-3 col-12 col-sm-2 col-lg-12">
+              <button
+                type="submit"
+                class="btn search-button" 
+                id="search-button" 
+                aria-label="submit search" 
+                style="width: 100%;">
+                Search
+              </button>
             </div>
-       
           </div>
         </form>
-
-
-        <div class="list-group" id="history"></div>
+        <div class="list-group" id="history">test</div>
       </aside>
-      
-
-      <div class="col-lg-9 pb-3">
-<!-- the sections below are where the api outputs need to go i the api calls-->
-<!-- now do a bit of positioning and get them in the right place-->
-        <section id="today" class="mt-3" role="region" aria-live="polite"></section>
-        <section id="forecast" class="row mt-3" role="region" aria-live="polite"></section>
-     
-      </div>
- 
+      <!-- current weather section -->
+      <section id="today" class="col-lg-9 pb-3 order-lg-2">
+        <div class="col-md-6">
+          <img id="weather-icon" alt="Weather Icon" />
+        </div>
+      </section>
     </div>
   </div>
 
@@ -69,7 +67,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- script.js -->
   <script src="assets/script.js"></script>
-   
 </body>
 
 </html>
