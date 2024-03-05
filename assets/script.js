@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Display the city name
                 const cityNameElement = document.createElement('h2');
                 cityNameElement.textContent = city;
-                document.querySelector('aside').appendChild(cityNameElement);
+                document.querySelector('#today').appendChild(cityNameElement);
 
                 // Display the current date
                 const currentDate = new Date();
@@ -50,18 +50,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Display the temperature
                 const temperatureElement = document.createElement('p');
                 temperatureElement.textContent = `Temperature: ${temperature} K`;
-                document.querySelector('#forecast').appendChild(temperatureElement);
+                document.querySelector('#today').appendChild(temperatureElement);
 
                 // Display the wind
                 const windElement = document.createElement('p');
                 windElement.textContent = `Wind: ${wind} m/s`;
-                document.querySelector('#forecast').appendChild(windElement);
+                document.querySelector('#today').appendChild(windElement);
 
                 // Display the humidity
                 const humidityElement = document.createElement('p');
                 humidityElement.textContent = `Humidity: ${humidity}%`;
-                document.querySelector('#forecast').appendChild(humidityElement);
+                document.querySelector('#today').appendChild(humidityElement);
             })
 
+
+
+
+            
     });
 });
