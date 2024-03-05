@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 const todayElement = document.querySelector('#today');
                 todayElement.innerHTML = '';
 
+                // Clear previouse data from 5day forecast
+                                // Clear previous data from the screen
+                                const fivedayElement = document.querySelector('#fiveday');
+                                todayElement.innerHTML = '';
+
                 // Extract the temperature, wind, and humidity from the API response
                 const temperature = data.list[0].main.temp;
                 const wind = data.list[0].wind.speed;

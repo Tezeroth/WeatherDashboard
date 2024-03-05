@@ -1,4 +1,28 @@
-
+.row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #fiveday {
+    width: 75%; /* Take full width of the container */
+    border-color: blue;
+  }
+  
+  @media (min-width: 992px) {
+    .col-lg-3 {
+      flex: 0 0 25%; /* 25% width on larger screens */
+      max-width: 25%;
+    }
+  
+    #today {
+      flex: 0 0 75%; /* 75% width on larger screens */
+      max-width: 75%;
+    }
+  
+    #fiveday {
+      order: 3; /* Change the order to display after the aside section */
+    }
+  }
 
 
 
@@ -23,17 +47,40 @@
 #today {
     border: solid 1px black;
     float: right; /* Add this property to move it to the right */
+    margin-bottom: 10px; /* Add this property to create space between sections */
 }
 
+section#today.col-lg-9.pb-3 {
+    height: 35vh;
+}
 
-
-
+section#fiveday.col-lg-9.pb-3 {
+    height: 35vh;
+    float: right;
+    clear: both; /* Add this property to clear the float */
+}
 
 #forecast {
     border: solid 1px black;
 }
 
+.weather-header {
+    background: linear-gradient(to right, #111df6, #0a0e6e);
+}
 
+.weather-hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+section#fiveday.col-lg-9.pb-3 {
+    height: 35vh;
+    float: right;
+}
+
+#forecast {
+    border: solid 1px black;
+}
 
 
 
@@ -53,3 +100,10 @@
   margin-bottom: 0;
 }
 
+.card {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
