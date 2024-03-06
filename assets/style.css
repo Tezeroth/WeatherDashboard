@@ -5,8 +5,8 @@
   
   #search-button {
     margin-top: 10px;
-    padding-left: 120px;
-    padding-right: 120px;
+    /* padding-left: 120px;
+    padding-right: 120px; */
     width: 100%;
     background-color: rgb(71, 152, 243);
     color: white;
@@ -52,13 +52,11 @@
   }
 
    
-    border-radius: 5px;
-  }
+   
   
   .row mt-3 {
     flex: 0 0 75%;
     max-width: 75%;
-   
     display: flex;
     justify-content: center;
   }
@@ -82,3 +80,5 @@
   h2.mt1 h3 form-label {
     font-weight:
   }
+
+  
