@@ -71,6 +71,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        background-color: rgb(14, 14, 62);
+        color: white;
     }
 
   h2 {
