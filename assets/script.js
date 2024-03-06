@@ -1,69 +1,98 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Get the search button element
     const searchButton = document.getElementById('search-button');
-
-    // Get the search input element
     const searchInput = document.getElementById('search-input');
 
-    // Add event listener to the search button
     searchButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent page refresh
+        event.preventDefault();
 
-        // Get the city name from the search input
         const city = searchInput.value;
 
-        // Check if the city is empty or undefined
         if (!city) {
             console.error('City is not defined or empty');
-            return; // Exit the function if city is not defined
+            return;
         }
 
-        // Make API call to OpenWeatherMap
         const apiKey = '46bf27ee4a6615f3d91fa9948c938df9';
         const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                // Clear previous data from the screen
                 const todayElement = document.querySelector('#today');
                 todayElement.innerHTML = '';
 
-                // Clear previouse data from 5day forecast
-                                // Clear previous data from the screen
-                                const fivedayElement = document.querySelector('#fiveday');
-                                todayElement.innerHTML = '';
-
-                // Extract the temperature, wind, and humidity from the API response
-                const temperature = data.list[0].main.temp;
-                const wind = data.list[0].wind.speed;
-                const humidity = data.list[0].main.humidity;
-
-                // Display the city name
                 const cityNameElement = document.createElement('h2');
                 cityNameElement.textContent = city;
                 todayElement.appendChild(cityNameElement);
 
-                // Display the current date
                 const currentDate = new Date();
                 const dateElement = document.createElement('p');
-                dateElement.textContent = currentDate.toDateString();
+                dateElement.textContent = `Date: ${currentDate.toDateString()}`;
                 todayElement.appendChild(dateElement);
 
-                // Display the temperature
-                const temperatureElement = document.createElement('p');
-                temperatureElement.textContent = `Temperature: ${temperature} K`;
-                todayElement.appendChild(temperatureElement);
+                if (data && data.list) {
+                    const temperature = data.list[0].main.temp;
+                    const wind = data.list[0].wind.speed;
+                    const humidity = data.list[0].main.humidity;
 
-                // Display the wind
-                const windElement = document.createElement('p');
-                windElement.textContent = `Wind: ${wind} m/s`;
-                todayElement.appendChild(windElement);
+                    const temperatureElement = document.createElement('p');
+                    temperatureElement.textContent = `Temperature: ${temperature} K`;
+                    todayElement.appendChild(temperatureElement);
 
-                // Display the humidity
-                const humidityElement = document.createElement('p');
-                humidityElement.textContent = `Humidity: ${humidity}%`;
-                todayElement.appendChild(humidityElement);
+                    const windElement = document.createElement('p');
+                    windElement.textContent = `Wind: ${wind} m/s`;
+                    todayElement.appendChild(windElement);
+
+                    const humidityElement = document.createElement('p');
+                    humidityElement.textContent = `Humidity: ${humidity}%`;
+                    todayElement.appendChild(humidityElement);
+                } else {
+                    console.error('Error fetching or processing forecast data.');
+                }
+
+                const fiveDayForecast = document.querySelector('#forecast');
+                fiveDayForecast.innerHTML = '';
+
+                for (let i = 0; i < Math.min(5, data.list.length); i++) {
+                    const forecastData = data.list[i];
+
+                    const card = document.createElement('div');
+                    card.classList.add('col-md-2');
+
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+
+                    const dayTitle = document.createElement('h5');
+                    dayTitle.classList.add('card-title');
+                    const forecastDate = new Date();
+                    forecastDate.setDate(currentDate.getDate() + i); // Increment date by day index
+                    dayTitle.textContent = forecastDate.toDateString();
+
+                    const icon = document.createElement('img');
+                    icon.src = `https://openweathermap.org/img/wn/${forecastData.weather[0].icon}.png`;
+                    icon.alt = forecastData.weather[0].description;
+                    cardBody.appendChild(icon);
+
+                    const temp = document.createElement('p');
+                    temp.classList.add('card-text');
+                    temp.textContent = `Temp: ${forecastData.main.temp} K`;
+
+                    const wind = document.createElement('p');
+                    wind.classList.add('card-text');
+                    wind.textContent = `Wind: ${forecastData.wind.speed} m/s`;
+
+                    const humidity = document.createElement('p');
+                    humidity.classList.add('card-text');
+                    humidity.textContent = `Humidity: ${forecastData.main.humidity}%`;
+
+                    cardBody.appendChild(dayTitle);
+                    cardBody.appendChild(temp);
+                    cardBody.appendChild(wind);
+                    cardBody.appendChild(humidity);
+
+                    card.appendChild(cardBody);
+                    fiveDayForecast.appendChild(card);
+                }
             });
     });
 });
