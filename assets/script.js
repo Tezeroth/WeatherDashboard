@@ -27,16 +27,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const currentDate = new Date();
                 const dateElement = document.createElement('p');
-                dateElement.textContent = `Date: ${currentDate.toDateString()}`;
+                const formattedDate = currentDate.toLocaleDateString('en-GB');
+                dateElement.textContent = `Date: ${formattedDate}`;
                 todayElement.appendChild(dateElement);
 
                 if (data && data.list) {
-                    const temperature = data.list[0].main.temp;
+                    const temperature = Math.round(data.list[0].main.temp - 273.15); // Convert temperature to Celsius
                     const wind = data.list[0].wind.speed;
                     const humidity = data.list[0].main.humidity;
 
                     const temperatureElement = document.createElement('p');
-                    temperatureElement.textContent = `Temperature: ${temperature} K`;
+                    temperatureElement.textContent = `Temperature: ${temperature} °C`;
                     todayElement.appendChild(temperatureElement);
 
                     const windElement = document.createElement('p');
@@ -46,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     const humidityElement = document.createElement('p');
                     humidityElement.textContent = `Humidity: ${humidity}%`;
                     todayElement.appendChild(humidityElement);
+
+                    const weatherIcon = document.createElement('img');
+                    weatherIcon.src = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png`;
+                    weatherIcon.alt = data.list[0].weather[0].description;
+                    todayElement.appendChild(weatherIcon);
                 } else {
                     console.error('Error fetching or processing forecast data.');
                 }
@@ -66,7 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     dayTitle.classList.add('card-title');
                     const forecastDate = new Date();
                     forecastDate.setDate(currentDate.getDate() + i); // Increment date by day index
-                    dayTitle.textContent = forecastDate.toDateString();
+                    const formattedForecastDate = forecastDate.toLocaleDateString('en-GB');
+                    dayTitle.textContent = formattedForecastDate;
 
                     const icon = document.createElement('img');
                     icon.src = `https://openweathermap.org/img/wn/${forecastData.weather[0].icon}.png`;
@@ -75,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     const temp = document.createElement('p');
                     temp.classList.add('card-text');
-                    temp.textContent = `Temp: ${forecastData.main.temp} K`;
+                    const temperatureCelsius = Math.round(forecastData.main.temp - 273.15); // Convert temperature to Celsius
+                    temp.textContent = `Temp: ${temperatureCelsius} °C`;
 
                     const wind = document.createElement('p');
                     wind.classList.add('card-text');
