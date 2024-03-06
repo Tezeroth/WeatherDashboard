@@ -3,16 +3,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchInput = document.getElementById('search-input');
     const historyContainer = document.getElementById('history');
 
-    searchButton.addEventListener('click', function(event) {
-        event.preventDefault();
+    // Load search history from local storage
+    const savedCities = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-        const city = searchInput.value.trim();
+    // Function to save search history to local storage
+    const saveToLocalStorage = () => {
+        localStorage.setItem('searchHistory', JSON.stringify(savedCities));
+    };
 
-        if (!city) {
-            console.error('City is not defined or empty');
-            return;
-        }
+    // Function to add a city to the search history and update local storage
+    const addToHistory = (city) => {
+        savedCities.push(city);
+        saveToLocalStorage();
+    };
 
+    // Function to create a search button and add it to the history container
+    const createSearchButton = (city) => {
         const button = document.createElement('button');
         button.classList.add('list-group-item', 'list-group-item-action');
         button.textContent = city;
@@ -23,6 +29,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         historyContainer.appendChild(button);
+    };
+
+    // Load saved search history buttons
+    savedCities.forEach(city => {
+        createSearchButton(city);
+    });
+
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const city = searchInput.value.trim();
+
+        if (!city) {
+            console.error('City is not defined or empty');
+            return;
+        }
+
+        // Add city to search history
+        addToHistory(city);
+
+        // Create and append search button
+        createSearchButton(city);
 
         const apiKey = '46bf27ee4a6615f3d91fa9948c938df9';
         const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
