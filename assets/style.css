@@ -84,7 +84,8 @@
   }
 
   button.list-group-item {
-    background-color: #545454;
-    color: white;
+    background-color: #b9b3b3;
+    color: rgb(0, 0, 0);
     margin-top: 10px;
+    text-align: center;
   }
