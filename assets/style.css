@@ -83,4 +83,8 @@
     font-weight:
   }
 
-  
+  button.list-group-item {
+    background-color: #545454;
+    color: white;
+    margin-top: 10px;
+  }
